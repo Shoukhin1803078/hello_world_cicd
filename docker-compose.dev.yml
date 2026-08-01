@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  web:
+    build: .                                 # ---> docker build---------> "docker build helloworld ."  or "docker build -t fastapi-demo:v1 ." eikhan theke asshe 
+    image: alamin078/helloworld:v1                     # ----> docker pull----------> "docker pull alamin078/helloworld:latest" eikhan theke asshe
+    container_name: helloworld_container     # --name helloworld_container ---------> docker run --name helloworld_container -p 8000:8000 fastapi-demo:v1
+    ports:
+      - "8000:8000"
+      
+    volumes:                                 # -v -------------------> docker run -d --name helloworld_container -p 8000:8000 -v ${PWD}:/app fastapi-demo:v1
+      - .:/app
+      
+    command: >                               # -----> docker run-------------> "docker run --name fastapi-container -p 8000:8000 fastapi-demo:v1" # eti Dockerfile er CMD ke overwrite kore orthat eitar priority high Dockerfile er ceye
+      uvicorn app.main:app                  
+      --host 0.0.0.0
+      --port 8000
+      --reload
+    

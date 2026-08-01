@@ -1,0 +1,10 @@
+
+
+version: "3.9"
+services:
+  web:
+    image: alamin078/helloworld:v1           # docker pull alamin078/helloworld:v1
+    container_name: helloworld_container
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
